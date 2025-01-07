@@ -15,9 +15,17 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: './dist', // Serve files from the 'dist' directory
-    port: 8080,       // The port number for the server (default is 8080)
-    open: true,       // Automatically open the app in the default browser
-    hot: true,        // Enable Hot Module Replacement (HMR) for live updates
+    static: './dist',
+    port: 8080,
+    open: true,
+    hot: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i, // Matches .css files
+        use: ['style-loader', 'css-loader'], // Loaders to handle CSS
+      },
+    ],
   },
 };
