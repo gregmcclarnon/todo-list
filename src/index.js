@@ -1,12 +1,29 @@
-import { createToDoItem, getToDoList } from './todo';
+import { createToDoItem } from './todo';
 import { renderToDoList } from './dom';
 
-// Hardcoded example tasks
-const tasks = [
-  createToDoItem('Buy groceries', '2025-01-08', 'high'),
-  createToDoItem('Study JavaScript', '2025-01-09', 'medium'),
-  createToDoItem('Take a walk', '2025-01-10', 'low'),
-];
+const tasks =[]; // Initialise an empty task list
 
-// Render tasks to the DOM
-renderToDoList(tasks);
+document.getElementById('task-form').addEventListener('submit', (e) => {
+  e.preventDefault(); // Prevent the form from refreshing the page
+
+  // Get form values
+
+  const title = document.getElementById('task-title').value;
+  const dueDate = document.getElementById('task-date').value;
+  const priority = document.getElementById('task-priority').value;
+
+  // Create the new task
+
+  const newTask = createToDoItem(title, dueDate, priority);
+  tasks.push(newTask); // Add it to the task list
+
+  // Render the task list
+
+  renderToDoList(tasks);
+
+  // Clear the form
+  e.target.reset();
+
+
+
+});
